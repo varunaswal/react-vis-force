@@ -2049,6 +2049,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return isNodeHighlighted(selectedNode, node) || isNodeHighlighted(hoveredNode, node);
 	      };
 	
+	      var fontSizeForLink = 10;
+	
+	      var showLabelForLink = function showLabelForLink(node) {
+	        return isLinkHighlighted(selectedNode, node) || isLinkHighlighted(hoveredNode, node);
+	      };
+	
 	      var opacityForNode = function opacityForNode(node) {
 	        var origOpacity = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
 	
@@ -2077,7 +2083,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	      return _react2.default.createElement(
 	        _ForceGraph2.default,
-	        _extends({ className: 'rv-force__interactive ' + className }, spreadableProps),
+	        _extends({
+	          className: 'rv-force__interactive ' + className
+	        }, spreadableProps),
 	        _react.Children.map(children, function (child) {
 	          if ((0, _ForceGraph.isNode)(child)) {
 	            var _child$props = child.props,
@@ -2109,12 +2117,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	              onClick: createEventHandler('onClickNode', node, onClick)
 	            });
 	          } else if ((0, _ForceGraph.isLink)(child)) {
-	            var link = child.props.link;
+	            var _child$props2 = child.props,
+	                link = _child$props2.link,
+	                _labelStyle = _child$props2.labelStyle,
+	                _child$props2$fontSiz = _child$props2.fontSize,
+	                _fontSize = _child$props2$fontSiz === undefined ? fontSizeForLink : _child$props2$fontSiz,
+	                _fontWeight = _child$props2.fontWeight,
+	                _child$props2$showLab = _child$props2.showLabel,
+	                _showLabel = _child$props2$showLab === undefined ? showLabelForLink(link) : _child$props2$showLab;
+	
 	            var _opacity = child.props.opacity;
 	
 	            _opacity = opacityForLink(link, _opacity);
 	
-	            return (0, _react.cloneElement)(child, { opacity: _opacity });
+	            return (0, _react.cloneElement)(child, {
+	              opacity: _opacity,
+	              showLabel: _showLabel,
+	              labelStyle: _extends({ fontSize: _fontSize, fontWeight: _fontWeight, opacity: _opacity }, _labelStyle)
+	            });
 	          }
 	          return child;
 	        })
