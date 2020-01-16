@@ -33,14 +33,17 @@ const selectedNodeShape = PropTypes.shape({
 
 export default class InteractiveForceGraph extends PureComponent {
   static get propTypes() {
-    return Object.assign({
-      selectedNode: selectedNodeShape,
-      defaultSelectedNode: selectedNodeShape,
-      highlightDependencies: PropTypes.bool,
-      opacityFactor: PropTypes.number,
-      onSelectNode: PropTypes.func,
-      onDeselectNode: PropTypes.func,
-    }, ForceGraph.propTypes);
+    return Object.assign(
+      {
+        selectedNode: selectedNodeShape,
+        defaultSelectedNode: selectedNodeShape,
+        highlightDependencies: PropTypes.bool,
+        opacityFactor: PropTypes.number,
+        onSelectNode: PropTypes.func,
+        onDeselectNode: PropTypes.func,
+      },
+      ForceGraph.propTypes
+    );
   }
 
   static get defaultProps() {
@@ -118,24 +121,28 @@ export default class InteractiveForceGraph extends PureComponent {
     };
 
     const areNodesRelatives = (node1, node2) =>
-      node1 && node2 && links.findIndex(link =>
-        link.value > 0 && (
-          (link.source === nodeId(node1) && link.target === nodeId(node2)) ||
-          (link.source === nodeId(node2) && link.target === nodeId(node1))
-        )
+      node1 &&
+      node2 &&
+      links.findIndex(
+        link =>
+          link.value > 0 &&
+          ((link.source === nodeId(node1) && link.target === nodeId(node2)) ||
+            (link.source === nodeId(node2) && link.target === nodeId(node1)))
       ) > -1;
 
     const isNodeHighlighted = (focusedNode, node) =>
-      focusedNode && (
-        (nodeId(focusedNode) === nodeId(node)) ||
+      focusedNode &&
+      (nodeId(focusedNode) === nodeId(node) ||
         (selectedNode && nodeId(selectedNode) === nodeId(node)) ||
-        (highlightDependencies && areNodesRelatives(node, selectedNode || focusedNode))
-      );
+        (highlightDependencies &&
+          areNodesRelatives(node, selectedNode || focusedNode)));
 
     const isLinkHighlighted = (focusedNode, link) =>
-      focusedNode && highlightDependencies && link.value > 0 &&
+      focusedNode &&
+      highlightDependencies &&
+      link.value > 0 &&
       (nodeId(focusedNode) === link.source ||
-      nodeId(focusedNode) === link.target);
+        nodeId(focusedNode) === link.target);
 
     const fontSizeForNode = node =>
       (selectedNode && nodeId(node) === nodeId(selectedNode) ? 14 : 10);
@@ -146,9 +153,16 @@ export default class InteractiveForceGraph extends PureComponent {
       isNodeHighlighted(selectedNode, node) ||
       isNodeHighlighted(hoveredNode, node);
 
+    const fontSizeForLink = 10;
+
+    const showLabelForLink = node =>
+      isLinkHighlighted(selectedNode, node) ||
+      isLinkHighlighted(hoveredNode, node);
+
     const opacityForNode = (node, origOpacity = 1) => {
       if (
-        highlightDependencies && selectedNode &&
+        highlightDependencies &&
+        selectedNode &&
         !isNodeHighlighted(selectedNode, node) &&
         !isNodeHighlighted(hoveredNode, node)
       ) {
@@ -156,10 +170,8 @@ export default class InteractiveForceGraph extends PureComponent {
       } else if (
         (selectedNode &&
           !isNodeHighlighted(selectedNode, node) &&
-          !isNodeHighlighted(hoveredNode, node)
-        ) || (
-          hoveredNode && !isNodeHighlighted(hoveredNode, node)
-        )
+          !isNodeHighlighted(hoveredNode, node)) ||
+        (hoveredNode && !isNodeHighlighted(hoveredNode, node))
       ) {
         return applyOpacity(origOpacity);
       }
@@ -169,17 +181,21 @@ export default class InteractiveForceGraph extends PureComponent {
 
     const opacityForLink = (link, origOpacity = 1) => {
       if (
-        highlightDependencies ? (
-          (!selectedNode && hoveredNode && !isLinkHighlighted(hoveredNode, link)) ||
-          (selectedNode && !isLinkHighlighted(selectedNode, link))
-        ) : (hoveredNode || selectedNode)
+        highlightDependencies
+          ? (!selectedNode &&
+              hoveredNode &&
+              !isLinkHighlighted(hoveredNode, link)) ||
+            (selectedNode && !isLinkHighlighted(selectedNode, link))
+          : hoveredNode || selectedNode
       ) {
         return applyOpacity(origOpacity / 4);
       }
 
       if (
-        hoveredNode && !isLinkHighlighted(hoveredNode, link) &&
-        selectedNode && !isLinkHighlighted(selectedNode, link)
+        hoveredNode &&
+        !isLinkHighlighted(hoveredNode, link) &&
+        selectedNode &&
+        !isLinkHighlighted(selectedNode, link)
       ) {
         return applyOpacity(origOpacity);
       }
@@ -188,7 +204,10 @@ export default class InteractiveForceGraph extends PureComponent {
     };
 
     return (
-      <ForceGraph className={`rv-force__interactive ${className}`} {...spreadableProps}>
+      <ForceGraph
+        className={`rv-force__interactive ${className}`}
+        {...spreadableProps}
+      >
         {Children.map(children, (child) => {
           if (isNode(child)) {
             const {
@@ -214,16 +233,34 @@ export default class InteractiveForceGraph extends PureComponent {
                 opacity,
                 ...labelStyle,
               },
-              onMouseEnter: createEventHandler('onHoverNode', node, onMouseEnter),
-              onMouseLeave: createEventHandler('onBlurNode', node, onMouseLeave),
+              onMouseEnter: createEventHandler(
+                'onHoverNode',
+                node,
+                onMouseEnter
+              ),
+              onMouseLeave: createEventHandler(
+                'onBlurNode',
+                node,
+                onMouseLeave
+              ),
               onClick: createEventHandler('onClickNode', node, onClick),
             });
           } else if (isLink(child)) {
-            const { link } = child.props;
+            const {
+              link,
+              labelStyle,
+              fontSize = fontSizeForLink,
+              fontWeight,
+              showLabel = showLabelForLink(link),
+            } = child.props;
             let { opacity } = child.props;
             opacity = opacityForLink(link, opacity);
 
-            return cloneElement(child, { opacity });
+            return cloneElement(child, {
+              opacity,
+              showLabel,
+              labelStyle: { fontSize, fontWeight, opacity, ...labelStyle },
+            });
           }
           return child;
         })}
