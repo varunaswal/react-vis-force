@@ -117,12 +117,31 @@ describe('<ForceGraph />', () => {
       expect(wrapper.find('.rv-force__label').length).toEqual(1);
     });
 
-    it('renders all labels for showLabels', () => {
+    it('renders all node labels for showNodeLabels', () => {
       const wrapper = shallow(
-        <ForceGraph {...defaultProps} showLabels>
+        <ForceGraph {...defaultProps} showNodeLabels>
           <ForceGraphNode key="1" node={{ id: '1' }} />
           <ForceGraphNode key="2" node={{ id: '2' }} />
           <ForceGraphLink key="1=>2" link={{ source: '1', target: '2' }} />
+        </ForceGraph>
+      );
+
+      wrapper.setState({
+        nodePositions: ForceGraph.getNodePositions(wrapper.instance().simulation),
+        linkPositions: ForceGraph.getLinkPositions(wrapper.instance().simulation),
+      });
+
+      expect(wrapper.find('.rv-force__label').length).toEqual(2);
+    });
+
+    it('renders all link labels for showLinkLabels', () => {
+      const wrapper = shallow(
+        <ForceGraph {...defaultProps} showLinkLabels>
+          <ForceGraphNode key="1" node={{ id: '1' }} />
+          <ForceGraphNode key="2" node={{ id: '2' }} />
+          <ForceGraphNode key="3" node={{ id: '3' }} />
+          <ForceGraphLink key="1=>2" link={{ source: '1', target: '2', value: 1, key: '1=>2' }} />
+          <ForceGraphLink key="2=>3" link={{ source: '2', target: '3', value: 1, key: '2=>3' }} />
         </ForceGraph>
       );
 

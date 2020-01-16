@@ -135,7 +135,7 @@ storiesOf('<ForceGraph />', module)
     </ForceGraph>
   ))
   .add('labelled nodes', () => (
-    <ForceGraph showLabels>
+    <ForceGraph showNodeLabels>
       {twoChildren}
     </ForceGraph>
   ))
@@ -320,7 +320,7 @@ storiesOf('<ForceGraph />', module)
     })
     .add('labelled nodes', () => (
       <InteractiveForceGraph
-        showLabels
+        showNodeLabels
         onSelectNode={action('node selected')}
         onDeselectNode={action('node deselected')}
       >

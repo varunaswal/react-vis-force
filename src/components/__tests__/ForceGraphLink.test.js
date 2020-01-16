@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import ForceGraphLink from '../ForceGraphLink';
 
@@ -33,9 +33,10 @@ const defaultProps = {
 
 describe('<ForceGraphLink />', () => {
   it('should render a line', () => {
-    const wrapper = shallow(<ForceGraphLink {...defaultProps} />);
+    const wrapper = mount(<ForceGraphLink {...defaultProps} />);
 
-    expect(wrapper.matchesElement(<line />)).toEqual(true);
+    expect(wrapper.containsMatchingElement(<line />)).toEqual(true);
+    wrapper.unmount();
   });
 
   it('should calculate a strokeWidth for the value', () => {

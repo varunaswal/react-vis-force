@@ -30,6 +30,10 @@ export default class ForceGraphLink extends PureComponent {
       edgeOffset: PropTypes.number,
       strokeWidth: PropTypes.number,
       className: PropTypes.string,
+      // these props only have an impact on the parent.
+      labelStyle: PropTypes.object,
+      labelClass: PropTypes.string,
+      showLabel: PropTypes.bool,
     };
   }
 

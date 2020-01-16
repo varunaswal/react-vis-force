@@ -63,9 +63,11 @@ export default class ForceGraph extends PureComponent {
       simulationOptions: simulationPropTypes,
 
       // adjust label display
-      labelAttr: PropTypes.string,
+      nodeLabelAttr: PropTypes.string,
+      linkLabelAttr: PropTypes.string,
       labelOffset: PropTypes.objectOf(PropTypes.func),
-      showLabels: PropTypes.bool,
+      showNodeLabels: PropTypes.bool,
+      showLinkLabels: PropTypes.bool,
     };
   }
 
@@ -74,13 +76,15 @@ export default class ForceGraph extends PureComponent {
       createSimulation: forceUtils.createSimulation,
       updateSimulation: forceUtils.updateSimulation,
       zoom: false,
-      labelAttr: 'id',
+      nodeLabelAttr: 'id',
+      linkLabelAttr: 'value',
       simulationOptions: DEFAULT_SIMULATION_PROPS,
       labelOffset: {
         x: ({ radius = 5 }) => radius / 2,
         y: ({ radius = 5 }) => -radius / 4,
       },
-      showLabels: false,
+      showNodeLabels: false,
+      showLinkLabels: false,
       zoomOptions: {},
     };
   }
@@ -236,9 +240,11 @@ export default class ForceGraph extends PureComponent {
     const {
       children,
       className,
-      labelAttr,
+      nodeLabelAttr,
+      linkLabelAttr,
       labelOffset,
-      showLabels,
+      showNodeLabels,
+      showLinkLabels,
       simulationOptions,
       zoomOptions,
       zoom,
@@ -281,7 +287,7 @@ export default class ForceGraph extends PureComponent {
           strokeWidth: this.scale(strokeWidth),
         }));
 
-        if ((showLabels || showLabel) && nodePosition) {
+        if ((showNodeLabels || showLabel) && nodePosition) {
           const { fontSize, ...spreadableLabelStyle } = labelStyle;
           labelElements.push(
             <text
@@ -292,19 +298,36 @@ export default class ForceGraph extends PureComponent {
               fontSize={this.scale(fontSize)}
               style={spreadableLabelStyle}
             >
-              {node[labelAttr]}
+              {node[nodeLabelAttr]}
             </text>
           );
         }
       } else if (isLink(child)) {
-        const { link } = child.props;
+        const { link, showLabel, labelClass, labelStyle = {} } = child.props;
         const { strokeWidth } = link;
-        const linkPosition = linkPositions[forceUtils.linkId(link)];
+        const linkPosition = linkPositions[forceUtils.linkId(link)] || {};
 
         linkElements.push(cloneElement(child, {
           ...linkPosition,
           strokeWidth: this.scale(strokeWidth),
         }));
+
+        if ((showLinkLabels || showLabel) && link.value > 0) {
+          const { fontSize, ...spreadableLabelStyle } = labelStyle;
+          labelElements.push(
+            <text
+              className={`rv-force__label ${labelClass}`}
+              key={`${forceUtils.linkId(link)}-label`}
+              // FUTURE: Calculate link label x and y offset relative to angle of link
+              x={(linkPosition.x1 + linkPosition.x2) / 2}
+              y={(linkPosition.y1 + linkPosition.y2) / 2}
+              fontSize={this.scale(fontSize)}
+              style={spreadableLabelStyle}
+            >
+              {link[linkLabelAttr]}
+            </text>
+          );
+        }
       } else {
         const { props: { zoomable } } = child;
         if (zoom && zoomable) {

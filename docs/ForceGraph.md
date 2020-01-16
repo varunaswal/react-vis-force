@@ -54,11 +54,17 @@ A function to use as an alternative to [`forceUtils.createSimulation`](https://g
 ### updateSimulation(simulation, options)
 A function to use as an alternative to [`forceUtils.updateSimulation`](https://github.com/uber/react-vis-force/blob/master/src/utils/d3-force.js#L262-L277) for updating a simulation given data and options.
 
-### labelAttr
-The attribute on each `node` to use as the label when rendering labels.
+### nodeLabelAttr
+The attribute on each `node` to use as the label when rendering labels. Is set to `id` by default.
+
+### linkLabelAttr
+The attribute on each `node` to use as the label when rendering labels. Is set to `value` by default
 
 ### labelOffset
 An object with `{ x(node) {}, y(node) {} }` to calculate the position offset to place each label at.
 
-### showLabels
-Force show all of the labels. You can also show individual labels with `<ForceGraphNode showLabel />`.
+### showNodeLabels
+Force show all of the node labels. You can also show individual labels with `<ForceGraphNode showLabel />`.
+
+### showLinkLabels
+Force show all of the link labels. You can also show individual labels with `<ForceGraphLink showLabel />`.
