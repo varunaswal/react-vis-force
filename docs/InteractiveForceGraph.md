@@ -1,5 +1,6 @@
 # `<InteractiveForceGraph />`
 
+A component that extends the `<ForceGraph /> with user interaction. 
 ## Usage
 
 ```javascript
@@ -35,7 +36,7 @@ The node to set to use as selected, if you want to treat the `<InteractiveForceG
 The node to set as selected by default.
 
 ### highlightDependencies
-When true, the dependencies of a hovered or selected node are given the highlighted treatment.
+When true, the dependencies of a hovered or selected node are given the highlighted treatment. By default, this will show labels for highlighted nodes and links.
 
 ### opacityFactor
 Used to scale opacity when hovering or selecting nodes. Ex. `0.6`
