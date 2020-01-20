@@ -793,7 +793,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          })));
 	
 	          if ((showNodeLabels || showLabel) && nodePosition) {
-	            var fontSize = labelStyle.fontSize,
+	            var _labelStyle$fontSize = labelStyle.fontSize,
+	                fontSize = _labelStyle$fontSize === undefined ? '10px' : _labelStyle$fontSize,
 	                spreadableLabelStyle = _objectWithoutProperties(labelStyle, ['fontSize']);
 	
 	            labelElements.push(_react2.default.createElement(
@@ -826,18 +827,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	          })));
 	
 	          if ((showLinkLabels || _showLabel) && link.value > 0) {
-	            var _fontSize = _labelStyle.fontSize,
-	                _spreadableLabelStyle = _objectWithoutProperties(_labelStyle, ['fontSize']);
+	            var _labelStyle$fontSize2 = _labelStyle.fontSize,
+	                _fontSize = _labelStyle$fontSize2 === undefined ? '10px' : _labelStyle$fontSize2,
+	                _labelStyle$dominantB = _labelStyle.dominantBaseline,
+	                dominantBaseline = _labelStyle$dominantB === undefined ? 'middle' : _labelStyle$dominantB,
+	                _labelStyle$textAncho = _labelStyle.textAnchor,
+	                textAnchor = _labelStyle$textAncho === undefined ? 'middle' : _labelStyle$textAncho,
+	                _spreadableLabelStyle = _objectWithoutProperties(_labelStyle, ['fontSize', 'dominantBaseline', 'textAnchor']);
 	
 	            labelElements.push(_react2.default.createElement(
 	              'text',
 	              {
-	                className: 'rv-force__link-label ' + _labelClass,
+	                className: 'rv-force__label ' + _labelClass,
 	                key: forceUtils.linkId(link) + '-label'
 	                // FUTURE: Calculate link label x and y offset relative to angle of link
 	                , x: (linkPosition.x1 + linkPosition.x2) / 2,
 	                y: (linkPosition.y1 + linkPosition.y2) / 2,
 	                fontSize: _this2.scale(_fontSize),
+	                dominantBaseline: dominantBaseline,
+	                textAnchor: textAnchor,
 	                style: _spreadableLabelStyle
 	              },
 	              link[linkLabelAttr]
@@ -1039,9 +1047,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        opacity: 0.6,
 	        stroke: '#999',
 	        edgeOffset: 0,
-	        labelStyle: {
-	          fontSize: '10px'
-	        },
+	        labelStyle: {},
 	        labelClass: ''
 	      };
 	    }
@@ -1844,9 +1850,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        opacity: 1,
 	        stroke: '#FFF',
 	        strokeWidth: 1.5,
-	        labelStyle: {
-	          fontSize: '10px'
-	        },
+	        labelStyle: {},
 	        labelClass: ''
 	      };
 	    }
