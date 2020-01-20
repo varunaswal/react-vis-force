@@ -45,6 +45,10 @@ export default class ForceGraphNode extends PureComponent {
       opacity: 1,
       stroke: '#FFF',
       strokeWidth: 1.5,
+      labelStyle: {
+        fontSize: '10px',
+      },
+      labelClass: '',
     };
   }
 

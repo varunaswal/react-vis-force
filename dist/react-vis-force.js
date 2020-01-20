@@ -1038,7 +1038,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        className: '',
 	        opacity: 0.6,
 	        stroke: '#999',
-	        edgeOffset: 0
+	        edgeOffset: 0,
+	        labelStyle: {
+	          fontSize: '10px'
+	        },
+	        labelClass: ''
 	      };
 	    }
 	  }]);
@@ -1839,7 +1843,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        fill: '#333',
 	        opacity: 1,
 	        stroke: '#FFF',
-	        strokeWidth: 1.5
+	        strokeWidth: 1.5,
+	        labelStyle: {
+	          fontSize: '10px'
+	        },
+	        labelClass: ''
 	      };
 	    }
 	  }]);

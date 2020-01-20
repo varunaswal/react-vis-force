@@ -43,6 +43,10 @@ export default class ForceGraphLink extends PureComponent {
       opacity: 0.6,
       stroke: '#999',
       edgeOffset: 0,
+      labelStyle: {
+        fontSize: '10px',
+      },
+      labelClass: '',
     };
   }
 
