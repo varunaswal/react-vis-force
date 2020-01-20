@@ -832,7 +832,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            labelElements.push(_react2.default.createElement(
 	              'text',
 	              {
-	                className: 'rv-force__label ' + _labelClass,
+	                className: 'rv-force__link-label ' + _labelClass,
 	                key: forceUtils.linkId(link) + '-label'
 	                // FUTURE: Calculate link label x and y offset relative to angle of link
 	                , x: (linkPosition.x1 + linkPosition.x2) / 2,
@@ -977,7 +977,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	          strokeWidth = _props.strokeWidth,
 	          className = _props.className,
 	          edgeOffset = _props.edgeOffset,
-	          spreadable = _objectWithoutProperties(_props, ['link', 'strokeWidth', 'className', 'edgeOffset']);
+	          labelStyle = _props.labelStyle,
+	          labelClass = _props.labelClass,
+	          showLabel = _props.showLabel,
+	          spreadable = _objectWithoutProperties(_props, ['link', 'strokeWidth', 'className', 'edgeOffset', 'labelStyle', 'labelClass', 'showLabel']);
 	
 	      if (typeof edgeOffset === 'number') {
 	        var x1 = spreadable.x1,

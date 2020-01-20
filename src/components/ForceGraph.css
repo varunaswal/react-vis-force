@@ -4,6 +4,9 @@
 
 .rv-force__label {
   pointer-events: none;
+}
+
+.rv-force__link-label {
   dominant-baseline: middle;
   text-anchor: middle;
 }

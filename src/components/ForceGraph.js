@@ -316,7 +316,7 @@ export default class ForceGraph extends PureComponent {
           const { fontSize, ...spreadableLabelStyle } = labelStyle;
           labelElements.push(
             <text
-              className={`rv-force__label ${labelClass}`}
+              className={`rv-force__link-label ${labelClass}`}
               key={`${forceUtils.linkId(link)}-label`}
               // FUTURE: Calculate link label x and y offset relative to angle of link
               x={(linkPosition.x1 + linkPosition.x2) / 2}

@@ -47,7 +47,17 @@ export default class ForceGraphLink extends PureComponent {
   }
 
   render() {
-    const { link, strokeWidth, className, edgeOffset, ...spreadable } = this.props;
+    const {
+      link,
+      strokeWidth,
+      className,
+      edgeOffset,
+      /* eslint-disable no-unused-vars */
+      labelStyle,
+      labelClass,
+      showLabel,
+      ...spreadable
+    } = this.props;
 
     if (typeof edgeOffset === 'number') {
       const { x1, x2, y1, y2 } = spreadable;
