@@ -4,6 +4,8 @@
 
 .rv-force__label {
   pointer-events: none;
+  dominant-baseline: middle;
+  text-anchor: middle;
 }
 
 .rv-force__label::selection {
