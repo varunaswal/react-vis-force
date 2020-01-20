@@ -249,7 +249,7 @@ export default class InteractiveForceGraph extends PureComponent {
             const {
               link,
               labelStyle,
-              fontSize = fontSizeForLink,
+              fontSize = fontSizeForLink(link),
               fontWeight,
               showLabel = showLabelForLink(link),
             } = child.props;

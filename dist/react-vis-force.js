@@ -793,8 +793,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          })));
 	
 	          if ((showNodeLabels || showLabel) && nodePosition) {
-	            var _labelStyle$fontSize = labelStyle.fontSize,
-	                fontSize = _labelStyle$fontSize === undefined ? '10px' : _labelStyle$fontSize,
+	            var fontSize = labelStyle.fontSize,
 	                spreadableLabelStyle = _objectWithoutProperties(labelStyle, ['fontSize']);
 	
 	            labelElements.push(_react2.default.createElement(
@@ -827,13 +826,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          })));
 	
 	          if ((showLinkLabels || _showLabel) && link.value > 0) {
-	            var _labelStyle$fontSize2 = _labelStyle.fontSize,
-	                _fontSize = _labelStyle$fontSize2 === undefined ? '10px' : _labelStyle$fontSize2,
-	                _labelStyle$dominantB = _labelStyle.dominantBaseline,
-	                dominantBaseline = _labelStyle$dominantB === undefined ? 'middle' : _labelStyle$dominantB,
-	                _labelStyle$textAncho = _labelStyle.textAnchor,
-	                textAnchor = _labelStyle$textAncho === undefined ? 'middle' : _labelStyle$textAncho,
-	                _spreadableLabelStyle = _objectWithoutProperties(_labelStyle, ['fontSize', 'dominantBaseline', 'textAnchor']);
+	            var _fontSize = _labelStyle.fontSize,
+	                _spreadableLabelStyle = _objectWithoutProperties(_labelStyle, ['fontSize']);
 	
 	            labelElements.push(_react2.default.createElement(
 	              'text',
@@ -844,9 +838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                , x: (linkPosition.x1 + linkPosition.x2) / 2,
 	                y: (linkPosition.y1 + linkPosition.y2) / 2,
 	                fontSize: _this2.scale(_fontSize),
-	                dominantBaseline: dominantBaseline,
-	                textAnchor: textAnchor,
-	                style: _spreadableLabelStyle
+	                style: _extends({ dominantBaseline: 'middle', textAnchor: 'middle' }, _spreadableLabelStyle)
 	              },
 	              link[linkLabelAttr]
 	            ));
@@ -2138,7 +2130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                link = _child$props2.link,
 	                _labelStyle = _child$props2.labelStyle,
 	                _child$props2$fontSiz = _child$props2.fontSize,
-	                _fontSize = _child$props2$fontSiz === undefined ? fontSizeForLink : _child$props2$fontSiz,
+	                _fontSize = _child$props2$fontSiz === undefined ? fontSizeForLink(link) : _child$props2$fontSiz,
 	                _fontWeight = _child$props2.fontWeight,
 	                _child$props2$showLab = _child$props2.showLabel,
 	                _showLabel = _child$props2$showLab === undefined ? showLabelForLink(link) : _child$props2$showLab;
