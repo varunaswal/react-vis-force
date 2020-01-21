@@ -315,27 +315,20 @@ export default class ForceGraph extends PureComponent {
         if ((showLinkLabels || showLabel) && link.value > 0) {
           const { fontSize, ...spreadableLabelStyle } = labelStyle;
           labelElements.push(
-            <g
+            <foreignObject
               key={`${forceUtils.linkId(link)}-label`}
+              // FUTURE: Calculate link label x and y offset relative to angle of link
+              x={(linkPosition.x1 + linkPosition.x2) / 2}
+              y={(linkPosition.y1 + linkPosition.y2) / 2}
             >
-              <rect
-                x={(linkPosition.x1 + linkPosition.x2) / 2}
-                y={(linkPosition.y1 + linkPosition.y2) / 2}
-                fill="white"
-                width="100%"
-                height="100%"
-              />
-              <text
+              <span
                 className={`rv-force__label ${labelClass}`}
-                // FUTURE: Calculate link label x and y offset relative to angle of link
-                x={(linkPosition.x1 + linkPosition.x2) / 2}
-                y={(linkPosition.y1 + linkPosition.y2) / 2}
                 fontSize={this.scale(fontSize)}
-                style={{ dominantBaseline: 'middle', textAnchor: 'middle', ...spreadableLabelStyle }}
+                style={{ backgroundColor: 'white', ...spreadableLabelStyle }}
               >
                 {link[linkLabelAttr]}
-              </text>
-            </g>
+              </span>
+            </foreignObject>
           );
         }
       } else {
