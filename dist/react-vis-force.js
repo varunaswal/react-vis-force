@@ -830,17 +830,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _spreadableLabelStyle = _objectWithoutProperties(_labelStyle, ['fontSize']);
 	
 	            labelElements.push(_react2.default.createElement(
-	              'text',
+	              'g',
 	              {
-	                className: 'rv-force__label ' + _labelClass,
 	                key: forceUtils.linkId(link) + '-label'
-	                // FUTURE: Calculate link label x and y offset relative to angle of link
-	                , x: (linkPosition.x1 + linkPosition.x2) / 2,
-	                y: (linkPosition.y1 + linkPosition.y2) / 2,
-	                fontSize: _this2.scale(_fontSize),
-	                style: _extends({ dominantBaseline: 'middle', textAnchor: 'middle' }, _spreadableLabelStyle)
 	              },
-	              link[linkLabelAttr]
+	              _react2.default.createElement('rect', {
+	                x: (linkPosition.x1 + linkPosition.x2) / 2,
+	                y: (linkPosition.y1 + linkPosition.y2) / 2,
+	                fill: 'white',
+	                width: '100%',
+	                height: '100%'
+	              }),
+	              _react2.default.createElement(
+	                'text',
+	                {
+	                  className: 'rv-force__label ' + _labelClass
+	                  // FUTURE: Calculate link label x and y offset relative to angle of link
+	                  , x: (linkPosition.x1 + linkPosition.x2) / 2,
+	                  y: (linkPosition.y1 + linkPosition.y2) / 2,
+	                  fontSize: _this2.scale(_fontSize),
+	                  style: _extends({ dominantBaseline: 'middle', textAnchor: 'middle' }, _spreadableLabelStyle)
+	                },
+	                link[linkLabelAttr]
+	              )
 	            ));
 	          }
 	        } else {
