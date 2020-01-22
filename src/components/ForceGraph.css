@@ -7,10 +7,6 @@
   pointer-events: none;
 }
 
-.rv-force__link-label {
-  padding: 0px 3px;
-}
-
 .rv-force__label::selection {
   background: none;
 }

@@ -150,7 +150,7 @@ describe('<ForceGraph />', () => {
         linkPositions: ForceGraph.getLinkPositions(wrapper.instance().simulation),
       });
 
-      expect(wrapper.find('.rv-force__link-label').length).toEqual(2);
+      expect(wrapper.find('.rv-force__label').length).toEqual(2);
     });
 
     it('applies labelOffsets, labelClass, and labelStyle', () => {
