@@ -2,8 +2,13 @@
   cursor: pointer;
 }
 
-.rv-force__label {
+.rv-force__label, 
+.rv-force__link-label {
   pointer-events: none;
+}
+
+.rv-force__link-label {
+  padding: 0px 3px;
 }
 
 .rv-force__label::selection {

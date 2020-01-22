@@ -840,7 +840,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _react2.default.createElement(
 	                'span',
 	                {
-	                  className: 'rv-force__label ' + _labelClass,
+	                  className: 'rv-force__link-label ' + _labelClass,
 	                  fontSize: _this2.scale(_fontSize),
 	                  style: _extends({ backgroundColor: 'white' }, _spreadableLabelStyle)
 	                },

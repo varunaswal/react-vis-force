@@ -322,7 +322,7 @@ export default class ForceGraph extends PureComponent {
               y={(linkPosition.y1 + linkPosition.y2) / 2}
             >
               <span
-                className={`rv-force__label ${labelClass}`}
+                className={`rv-force__link-label ${labelClass}`}
                 fontSize={this.scale(fontSize)}
                 style={{ backgroundColor: 'white', ...spreadableLabelStyle }}
               >
