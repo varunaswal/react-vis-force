@@ -842,7 +842,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                cx: '10',
 	                cy: '10',
 	                fill: 'white',
-	                radius: '7px'
+	                r: '7'
 	              }),
 	              _react2.default.createElement(
 	                'text',

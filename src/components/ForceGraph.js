@@ -326,7 +326,7 @@ export default class ForceGraph extends PureComponent {
                 cx="10"
                 cy="10"
                 fill="white"
-                radius="7px"
+                r="7"
               />
               <text
                 className={`rv-force__label ${labelClass}`}
