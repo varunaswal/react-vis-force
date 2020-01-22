@@ -153,7 +153,7 @@ export default class InteractiveForceGraph extends PureComponent {
       isNodeHighlighted(selectedNode, node) ||
       isNodeHighlighted(hoveredNode, node);
 
-    const fontSizeForLink = link => (isLinkHighlighted(selectedNode, link) ? 14 : 10);
+    const fontSizeForLink = link => (isLinkHighlighted(selectedNode, link) ? 14 : 12);
 
     const showLabelForLink = node =>
       isLinkHighlighted(selectedNode, node) ||

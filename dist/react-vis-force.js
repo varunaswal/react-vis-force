@@ -839,11 +839,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                y: (linkPosition.y1 + linkPosition.y2) / 2 - 10
 	              },
 	              _react2.default.createElement('rect', {
-	                x: '0',
-	                y: '0',
+	                x: '10',
+	                y: '10',
 	                fill: 'white',
-	                width: '100%',
-	                height: '100%'
+	                radius: '7px'
 	              }),
 	              _react2.default.createElement(
 	                'text',
@@ -2073,7 +2072,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 	
 	      var fontSizeForLink = function fontSizeForLink(link) {
-	        return isLinkHighlighted(selectedNode, link) ? 14 : 10;
+	        return isLinkHighlighted(selectedNode, link) ? 14 : 12;
 	      };
 	
 	      var showLabelForLink = function showLabelForLink(node) {

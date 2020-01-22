@@ -323,11 +323,10 @@ export default class ForceGraph extends PureComponent {
               y={(linkPosition.y1 + linkPosition.y2) / 2 - 10}
             >
               <rect
-                x="0"
-                y="0"
+                x="10"
+                y="10"
                 fill="white"
-                width="100%"
-                height="100%"
+                radius="7px"
               />
               <text
                 className={`rv-force__label ${labelClass}`}
