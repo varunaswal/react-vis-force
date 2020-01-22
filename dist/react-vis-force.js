@@ -838,9 +838,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                x: (linkPosition.x1 + linkPosition.x2) / 2 - 10,
 	                y: (linkPosition.y1 + linkPosition.y2) / 2 - 10
 	              },
-	              _react2.default.createElement('rect', {
-	                x: '10',
-	                y: '10',
+	              _react2.default.createElement('circle', {
+	                cx: '10',
+	                cy: '10',
 	                fill: 'white',
 	                radius: '7px'
 	              }),
