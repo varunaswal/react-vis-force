@@ -315,12 +315,12 @@ export default class ForceGraph extends PureComponent {
         if ((showLinkLabels || showLabel) && link.value > 0) {
           const { fontSize, ...spreadableLabelStyle } = labelStyle;
           labelElements.push(
-            <g
+            <svg
               key={`${forceUtils.linkId(link)}-label`}
               height="20px"
               width="20px"
-              x={(linkPosition.x1 + linkPosition.x2) / 2}
-              y={(linkPosition.y1 + linkPosition.y2) / 2}
+              x={(linkPosition.x1 + linkPosition.x2) / 2 - 10}
+              y={(linkPosition.y1 + linkPosition.y2) / 2 - 10}
             >
               <rect
                 x="0"
@@ -339,7 +339,7 @@ export default class ForceGraph extends PureComponent {
               >
                 {link[linkLabelAttr]}
               </text>
-            </g>
+            </svg>
           );
         }
       } else {

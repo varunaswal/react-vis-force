@@ -830,13 +830,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _spreadableLabelStyle = _objectWithoutProperties(_labelStyle, ['fontSize']);
 	
 	            labelElements.push(_react2.default.createElement(
-	              'g',
+	              'svg',
 	              {
 	                key: forceUtils.linkId(link) + '-label',
 	                height: '20px',
 	                width: '20px',
-	                x: (linkPosition.x1 + linkPosition.x2) / 2,
-	                y: (linkPosition.y1 + linkPosition.y2) / 2
+	                x: (linkPosition.x1 + linkPosition.x2) / 2 - 10,
+	                y: (linkPosition.y1 + linkPosition.y2) / 2 - 10
 	              },
 	              _react2.default.createElement('rect', {
 	                x: '0',
